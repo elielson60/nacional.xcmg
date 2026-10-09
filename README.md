@@ -81,11 +81,11 @@ Eventos: `ficha_abrir`, `comparar_toggle`, `comparar_abrir`, `cta_click` (ficha_
 ## 5. Catálogo em PDF
 
 Arquivo: `catalogo-xcmg-nacional.pdf` (na raiz do site). Para atualizar, substitua o arquivo mantendo o mesmo nome.
-Botões: cabeçalho, banner principal, seção Catálogo e menu do celular.
-- **Abrir**: abre o PDF em nova aba.
-- **Baixar**: baixa como `Catalogo-XCMG-Nacional.pdf`.
+Botões: ícone no cabeçalho, faixa na seção de modelos e item no menu do celular.
+- **Abrir**: abre o PDF em nova aba (livre).
+- **Baixar**: pede nome + WhatsApp + consentimento LGPD; o download começa na hora. O lead vai para o webhook (`tipo: "download_catalogo"`) quando `integracao.webhookUrl` estiver configurado. Quem já informou os dados no mesmo navegador baixa direto.
 - **Enviar pelo WhatsApp**: no celular (HTTPS), abre o compartilhamento do sistema com o próprio PDF anexado; no computador, abre o WhatsApp com o link do catálogo.
-Eventos: `catalogo_modal`, `catalogo_abrir`, `catalogo_baixar`, `catalogo_whatsapp`, `catalogo_compartilhado_arquivo`.
+Eventos: `catalogo_modal`, `catalogo_abrir`, `catalogo_gate_abrir`, `catalogo_baixar`, `lead_catalogo`, `catalogo_whatsapp`, `catalogo_compartilhado_arquivo`.
 
 ## 6. Fotos
 

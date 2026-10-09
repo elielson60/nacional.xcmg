@@ -470,11 +470,15 @@ footer button{background:none;border:0;padding:0;color:var(--on-dark);font:inher
 .cmp-table td{font-weight:700}
 /* fundo das fotos: branco + marca d'água XCMG + quadriculado técnico + chão */
 :root{--photo-bg:
-  radial-gradient(ellipse 36% 6% at 50% 93%, rgba(30,20,10,.38), rgba(30,20,10,0) 72%),
-  url("img/fundo-obra.jpg") center 62% / cover no-repeat,
-  #cfd9e4}
+  url("img/marca-dagua-xcmg.png") center 34% / 74% auto no-repeat,
+  radial-gradient(ellipse 34% 6% at 50% 93%, rgba(15,30,74,.20), rgba(15,30,74,0) 72%),
+  linear-gradient(180deg, rgba(255,255,255,0) 0 80%, #EEF1F6 80% 100%),
+  radial-gradient(ellipse 60% 55% at 50% 48%, #fff 0 35%, rgba(255,255,255,0) 100%),
+  linear-gradient(rgba(43,87,143,.07) 1px, transparent 1px) 0 0 / 22px 22px,
+  linear-gradient(90deg, rgba(43,87,143,.07) 1px, transparent 1px) 0 0 / 22px 22px,
+  #fff}
 .eq-fig,.cat-fig,.ficha-stage{background:var(--photo-bg)!important}
-.eq-fig img,.cat-fig img,.ficha-stage img{filter:drop-shadow(0 10px 8px rgba(30,20,10,.28)) saturate(1.05)!important}
+.eq-fig img,.cat-fig img,.ficha-stage img{filter:drop-shadow(0 8px 6px rgba(15,30,74,.16))!important;image-rendering:auto}
 /* fundo do site: máquinas XCMG em duotone azul, transparente e fixo */
 body{background:#F4F6FA}
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
@@ -513,6 +517,18 @@ main>.sec:not(.about):not(.quote){background-color:transparent}
 /* textos justificados */
 main p, main li, .modal p, .ficha-info p, .ficha-note, footer .ft-brand p, footer .disc{text-align:justify;text-align-last:left;hyphens:auto;-webkit-hyphens:auto}
 .kpis *, .btn, .eq-motor, .eq-cat, .eyebrow, .ct-big, .ct-kicker, .tag, .cat-n, .count, .price, .apps span, .dataplate *, .hero-contact *, .ct-tile *, .viewer-cta p, .cmp-bar *, .f label, .f .msg, .consent span, .seg .eqs, .ct-sub, .steps span{text-align:left}
+/* rodapé centralizado */
+footer, footer p, footer .disc, footer .ft-brand p{text-align:center!important;text-align-last:center!important;hyphens:none!important;-webkit-hyphens:none!important}
+footer .ft-top{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start;justify-items:center}
+footer .ft-brand{align-items:center}
+footer .ft-logos{justify-content:center}
+footer .ft-brand p{max-width:34ch;margin-inline:auto}
+footer .ft-col{display:flex;flex-direction:column;align-items:center}
+footer .ft-col ul{justify-items:center}
+footer .links{justify-content:center}
+footer .disc{margin-inline:auto;max-width:90ch}
+footer .ft-bottom{flex-direction:column;justify-content:center;align-items:center;gap:8px}
+@media (max-width:760px){footer .ft-top{grid-template-columns:1fr;gap:28px}footer .ft-col li{overflow-wrap:anywhere}footer .wrap{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}}
 /* catálogo PDF */
 .cat-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:1px solid rgba(255,255,255,.22);border-radius:var(--r);background:transparent;color:var(--on-dark);font:inherit;font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
 .cat-btn:hover{border-color:var(--yellow);color:var(--yellow)}

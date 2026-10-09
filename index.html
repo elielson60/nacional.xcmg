@@ -428,6 +428,17 @@ footer button{background:none;border:0;padding:0;color:var(--on-dark);font:inher
 .cmp-table tbody th{color:var(--steel);font-weight:500;position:sticky;left:0;background:var(--paper);min-width:150px}
 @media (max-width:640px){.cmp-table th,.cmp-table td{min-width:128px;padding:9px 8px;font-size:.84rem}.cmp-table tbody th{min-width:104px}.cmp-table thead img{max-width:120px}.cmp-table thead b{font-size:1.1rem}}
 .cmp-table td{font-weight:700}
+/* fundo das fotos: branco + marca d'água XCMG + quadriculado técnico + chão */
+:root{--photo-bg:
+  url("img/marca-dagua-xcmg.png") center 34% / 74% auto no-repeat,
+  radial-gradient(ellipse 34% 6% at 50% 93%, rgba(15,30,74,.20), rgba(15,30,74,0) 72%),
+  linear-gradient(180deg, rgba(255,255,255,0) 0 80%, #EEF1F6 80% 100%),
+  radial-gradient(ellipse 60% 55% at 50% 48%, #fff 0 35%, rgba(255,255,255,0) 100%),
+  linear-gradient(rgba(43,87,143,.07) 1px, transparent 1px) 0 0 / 22px 22px,
+  linear-gradient(90deg, rgba(43,87,143,.07) 1px, transparent 1px) 0 0 / 22px 22px,
+  #fff}
+.eq-fig,.cat-fig,.ficha-stage{background:var(--photo-bg)!important}
+.eq-fig img,.cat-fig img,.ficha-stage img{filter:drop-shadow(0 8px 6px rgba(15,30,74,.16))!important}
 /* catálogo PDF */
 .cat-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:1px solid rgba(255,255,255,.22);border-radius:var(--r);background:transparent;color:var(--on-dark);font:inherit;font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
 .cat-btn:hover{border-color:var(--yellow);color:var(--yellow)}

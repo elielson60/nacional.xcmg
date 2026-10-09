@@ -349,7 +349,15 @@ form.qf{background:var(--plate);padding:clamp(20px,4vw,40px);border-top:6px soli
 .ct-tile>span:nth-child(2){display:flex;flex-direction:column;gap:2px;min-width:0}
 .ct-tile small{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--steel)}
 .ct-tile b{font-size:1.05rem;line-height:1.3}
-.ct-mail{font-size:.98rem!important;overflow-wrap:anywhere}
+.ct-mail{font-size:.98rem!important;white-space:nowrap}
+@media (max-width:640px){
+  .ct-tile{grid-template-columns:40px minmax(0,1fr) 32px;gap:12px;padding:16px 14px}
+  .ct-tile i{width:40px;height:40px}.ct-tile i svg{width:20px;height:20px}
+  .ct-go{width:32px;height:32px}
+  .ct-email{grid-template-columns:40px minmax(0,1fr)}
+  .ct-email .ct-go{display:none}
+  .ct-mail{font-size:min(.98rem,3.7vw)!important;letter-spacing:-.01em}
+}
 .ct-tile em{font-style:normal;font-size:.84rem;color:var(--steel)}
 .ct-go{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:var(--ink);color:var(--yellow)}
 .ct-go svg{width:18px;height:18px}
@@ -502,6 +510,9 @@ main>.sec:not(.about):not(.quote){background-color:transparent}
 .viewer-cta p{margin:0;font-weight:600}
 .show-sm{display:none}
 @media (max-width:640px){.show-sm{display:inline}.viewer-cta p{display:none}.viewer-cta{flex-wrap:nowrap}.viewer-cta .btn{flex:1;padding:0 8px;font-size:.72rem}}
+/* textos justificados */
+main p, main li, .modal p, .ficha-info p, .ficha-note, footer .ft-brand p, footer .disc{text-align:justify;text-align-last:left;hyphens:auto;-webkit-hyphens:auto}
+.kpis *, .btn, .eq-motor, .eq-cat, .eyebrow, .ct-big, .ct-kicker, .tag, .cat-n, .count, .price, .apps span, .dataplate *, .hero-contact *, .ct-tile *, .viewer-cta p, .cmp-bar *, .f label, .f .msg, .consent span, .seg .eqs, .ct-sub, .steps span{text-align:left}
 /* catálogo PDF */
 .cat-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:1px solid rgba(255,255,255,.22);border-radius:var(--r);background:transparent;color:var(--on-dark);font:inherit;font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
 .cat-btn:hover{border-color:var(--yellow);color:var(--yellow)}
@@ -1190,7 +1201,7 @@ function renderContact(){
     <div class="ct-machine" aria-hidden="true"></div>
   </div>
   <div class="ct-side">
-    ${C.email?`<button class="ct-tile" type="button" data-copy="${esc(C.email)}"><i>${CI.mail}</i><span><small>E-mail</small><b class="ct-mail">${esc(C.email)}</b><em>Toque para copiar</em></span><span class="ct-go">${CI.copy}</span></button>`:""}
+    ${C.email?`<button class="ct-tile ct-email" type="button" data-copy="${esc(C.email)}"><i>${CI.mail}</i><span><small>E-mail</small><b class="ct-mail">${esc(C.email)}</b><em>Toque para copiar</em></span><span class="ct-go">${CI.copy}</span></button>`:""}
     ${ig?`<a class="ct-tile" href="${esc(R.instagram)}" target="_blank" rel="noopener" data-track="contato_instagram"><i>${CI.ig}</i><span><small>Instagram</small><b>@${esc(ig)}</b><em>Lançamentos e máquinas em estoque</em></span><span class="ct-go">${CI.arrow}</span></a>`:""}
     ${C.endereco?`<a class="ct-tile ct-map" href="${esc(C.mapaUrl||"#")}" target="_blank" rel="noopener" data-track="contato_mapa"><i>${CI.pin}</i><span><small>Showroom · Manaus/AM</small><b>Av. Torquato Tapajós, nº 03</b><em>Ao lado do Posto Atem · CEP 69023-008</em></span><span class="ct-go">${CI.arrow}</span></a>`:""}
     ${C.horario?`<div class="ct-tile"><i>${CI.phone}</i><span><small>Horário</small><b>${esc(C.horario)}</b></span></div>`:""}

@@ -135,7 +135,21 @@ p{margin:0}
   .hero .wrap{min-height:0;padding-block:clamp(230px,62vw,340px) 32px;align-items:end}
   .hero-tag{top:16px;bottom:auto}
 }
-@media (max-width:480px){.hero-contact{grid-template-columns:1fr}.hero-contact>*{border-right:0;border-bottom:1px solid rgba(255,255,255,.1)}}
+@media (max-width:640px){
+  .hide-sm{display:none}
+  .hero .eyebrow{font-size:.66rem;letter-spacing:.1em}
+  .hero h1{font-size:clamp(2.3rem,11vw,3rem)}
+  .hero .sub{font-size:.98rem;line-height:1.5;margin-top:14px}
+  .hero .ctas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:22px}
+  .hero .ctas .btn{min-height:48px;padding:0 10px;font-size:.8rem;letter-spacing:.05em}
+  .hero .ctas [data-open-catalog]{grid-column:1/-1;justify-self:start;min-height:40px;border:0;padding:0;gap:8px;color:var(--on-dark-dim);text-transform:none;letter-spacing:0;font-size:.92rem;font-weight:600;text-decoration:underline;text-underline-offset:4px}
+  .hero-contact{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .hero-contact>*{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 4px 12px;border-right:1px solid rgba(255,255,255,.1)!important;border-bottom:0!important;text-align:center}
+  .hero-contact>*:last-child{border-right:0!important}
+  .hero-contact .ci{width:44px;height:44px}
+  .hero-contact span{font-size:.6rem;letter-spacing:.08em;color:var(--on-dark)}
+  .hero-contact strong{display:none}
+}
 /* seções */
 .sec{padding-block:clamp(64px,9vw,120px)}
 .sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;align-items:end;margin-bottom:48px}
@@ -422,8 +436,8 @@ footer button{background:none;border:0;padding:0;color:var(--on-dark);font:inher
       <h1 id="h-hero" style="margin-top:18px">Força e tecnologia para <em>grandes resultados.</em></h1>
       <p class="sub">Escavadeiras, pás carregadeiras, motoniveladora, retroescavadeiras, pavimentação e empilhadeiras. Fale com um consultor e receba sua proposta.</p>
       <div class="ctas">
-        <a class="btn btn-y" href="#destaques" data-track="hero_modelos"><span>Ver os <span id="dpModelos">29</span> modelos</span></a>
-        <a class="btn btn-wa" data-wa="hero_whatsapp" href="#"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg> Falar no WhatsApp</a>
+        <a class="btn btn-y" href="#destaques" data-track="hero_modelos"><span>Ver <span class="hide-sm">os <span id="dpModelos">29</span> </span>modelos</span></a>
+        <a class="btn btn-wa" data-wa="hero_whatsapp" href="#"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg> <span><span class="hide-sm">Falar no </span>WhatsApp</span></a>
         <button class="btn btn-ghost-d" type="button" data-open-catalog="hero"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 13h6M9 17h6"/></svg> Catálogo em PDF</button>
       </div>
     </div>

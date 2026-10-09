@@ -78,15 +78,13 @@ Conversão recomendada no Google Ads/Meta: `lead_form_success` e `lead_whatsapp_
 - **Comparar**: marque até 3 modelos e toque em **Comparar** na barra inferior para ver lado a lado.
 Eventos: `ficha_abrir`, `comparar_toggle`, `comparar_abrir`, `cta_click` (ficha_whatsapp_*, ficha_compartilhar_*, comparar_whatsapp).
 
-## 5. Catálogo em PDF
+## 5. Catálogo
 
-Arquivo: `catalogo-xcmg-nacional.pdf` (na raiz do site). Para atualizar, substitua o arquivo mantendo o mesmo nome.
-Botões: ícone no cabeçalho, faixa na seção de modelos e item no menu do celular.
-- Na primeira vez, o catálogo pede **nome + WhatsApp + consentimento LGPD**. Depois disso libera **Abrir**, **Baixar** e **Enviar pelo WhatsApp**. Quem já informou os dados no mesmo navegador entra direto.
-- O lead vai para o webhook (`tipo: "catalogo"`) quando `integracao.webhookUrl` estiver configurado.
-- O PDF continua com endereço público: quem tiver o link direto abre sem cadastro. O formulário filtra o visitante comum do site, não é uma trava de segurança.
-- **Enviar pelo WhatsApp**: no celular (HTTPS), abre o compartilhamento do sistema com o próprio PDF anexado; no computador, abre o WhatsApp com o link do catálogo.
-Eventos: `catalogo_modal`, `catalogo_abrir`, `catalogo_gate_abrir`, `lead_catalogo`, `catalogo_abrir`, `catalogo_baixar`, `catalogo_whatsapp`, `catalogo_compartilhado_arquivo`.
+- **Ver catálogo** (cabeçalho, seção de modelos e menu do celular): abre um visualizador com as 6 páginas em imagem (`img/catalogo/pagina-1..6.webp`). Não carrega o PDF e não tem botão de baixar.
+- **Baixar PDF / Enviar pelo WhatsApp**: só depois de nome + WhatsApp + consentimento LGPD. Quem já informou no mesmo navegador baixa direto. O lead vai para o webhook (`tipo: "catalogo"`) quando `integracao.webhookUrl` estiver configurado.
+- Arquivo do PDF: `catalogo-xcmg-4241813acd.pdf` (nome difícil de adivinhar). Para trocar o catálogo: gere as 6 imagens das páginas, substitua o PDF e atualize `PDF.arquivo` no `index.html`.
+- Limite: em site estático não existe bloqueio absoluto. Quem tiver o endereço exato do PDF ainda consegue abrir; o nome aleatório e a ausência de link visível evitam isso na prática.
+Eventos: `catalogo_visualizar`, `catalogo_modal`, `catalogo_gate_abrir`, `lead_catalogo`, `catalogo_baixar`, `catalogo_whatsapp`.
 
 ## 6. Fotos
 

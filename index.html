@@ -237,11 +237,12 @@ p{margin:0}
 .segs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 @media (max-width:960px){.segs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:600px){.segs{grid-template-columns:1fr}}
-.seg{position:relative;min-height:300px;background:var(--graphite);color:var(--on-dark);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;isolation:isolate}
-.seg::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--seg-bg)}
+.seg{position:relative;background:var(--graphite);color:var(--on-dark);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;padding:0 24px 24px;isolation:isolate}
+.seg::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#1E3A7A 0%,var(--graphite) 55%,var(--ink) 100%)}
 .seg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 .seg .seg-art{position:absolute;right:-6%;top:12%;width:72%;color:var(--yellow);opacity:.9;z-index:-1}
-.seg .seg-img{position:absolute;right:-4%;top:8%;width:68%;max-height:58%;object-fit:contain;object-position:right top;z-index:-2;filter:drop-shadow(0 12px 10px rgba(0,0,0,.45))}
+.seg .seg-img{position:relative;inset:auto;display:block;width:100%;height:190px;object-fit:contain;object-position:center bottom;z-index:0;margin:18px 0 16px;filter:drop-shadow(0 14px 10px rgba(0,0,0,.45))}
+.seg h3{border-top:3px solid var(--yellow);padding-top:14px}
 .seg h3{font-size:1.9rem}
 .seg p{color:var(--on-dark-dim);font-size:.95rem;margin-top:8px}
 .seg .eqs{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--yellow);margin-top:12px}
@@ -366,6 +367,67 @@ footer button{background:none;border:0;padding:0;color:var(--on-dark);font:inher
   .cat-count{display:none}
   .c-item strong{font-size:.95rem}
 }
+/* cards sem sobreposição + ficha técnica + comparador */
+.eq-fig{border:0;padding:0;width:100%;display:block;cursor:pointer;font:inherit}
+.eq-fig .zoom{position:absolute;right:10px;bottom:14px;font-family:var(--f-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;background:rgba(15,30,74,.88);color:#fff;padding:5px 9px;opacity:0;transition:opacity .2s}
+.eq-fig:hover .zoom,.eq-fig:focus-visible .zoom{opacity:1}
+.eq-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;background:var(--ink);color:var(--yellow)}
+.tag.br{background:#1F7A4D;color:#fff}
+.tag.ok{background:#E3F4EA;color:#14532D}
+.cat-n{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--steel)}
+.cmp-toggle{display:flex;align-items:center;gap:8px;font-size:.86rem;font-weight:600;color:var(--steel);cursor:pointer;min-height:40px}
+.cmp-toggle input{width:20px;height:20px;accent-color:var(--ink)}
+.cmp-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:55;display:flex;align-items:center;gap:10px;background:var(--ink);color:#fff;padding:10px 10px 10px 18px;border-left:5px solid var(--yellow);box-shadow:0 10px 30px rgba(15,30,74,.35);max-width:calc(100vw - 110px)}
+.cmp-bar b{font-size:.9rem;white-space:nowrap}
+.cmp-bar .btn{min-height:42px}
+.cmp-bar .x{background:none;border:0;color:var(--on-dark-dim);font:inherit;font-size:.82rem;text-decoration:underline;cursor:pointer;min-height:40px}
+@media (max-width:640px){.cmp-bar{left:16px;transform:none;max-width:calc(100vw - 108px)}.cmp-bar b{display:none}}
+.sheet{background:var(--paper);width:100%;max-width:1080px;max-height:92vh;overflow:auto;border-top:6px solid var(--yellow);position:relative}
+.sheet-bar{position:sticky;top:0;height:0;z-index:5}
+.sheet-close{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:50%;border:0;background:var(--ink);color:#fff;font-size:1.3rem;cursor:pointer}
+.ficha-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:start}
+.ficha-stage{background:radial-gradient(ellipse 70% 55% at 50% 64%,#fff 0%,#e4e9f2 100%);position:sticky;top:0;display:flex;flex-direction:column;justify-content:center;padding:40px 24px 24px;height:min(78vh,600px)}
+.ficha-stage img{width:100%;flex:1;min-height:0;object-fit:contain}
+.ficha-stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:var(--yellow)}
+.ficha-nav{display:flex;justify-content:space-between;gap:10px;margin-top:12px}
+.ficha-nav button{min-height:44px;padding:0 14px;border:1px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-weight:700;font-size:.82rem;cursor:pointer}
+.ficha-info{padding:56px clamp(20px,3vw,40px) 32px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.ficha-info h2{font-size:clamp(2.6rem,5vw,3.8rem)}
+.ficha-info .kpis b{font-size:clamp(1.5rem,2.4vw,2rem)}
+.spec-table{width:100%;border-collapse:collapse;font-size:.94rem}
+.spec-table caption{text-align:left;font-family:var(--f-display);font-size:1.4rem;text-transform:uppercase;font-weight:800;padding-bottom:8px}
+.spec-table th,.spec-table td{padding:10px 0;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+.spec-table th{font-weight:500;color:var(--steel);width:46%;padding-right:12px}
+.spec-table td{font-weight:700;font-variant-numeric:tabular-nums}
+.spec-table tr:nth-child(odd) th,.spec-table tr:nth-child(odd) td{background:rgba(238,241,246,.6)}
+.spec-table th,.spec-table td{padding-left:8px}
+.comp-list{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.comp-list li{display:flex;gap:10px;font-size:.92rem}
+.comp-list li::before{content:"";flex:none;width:8px;height:8px;margin-top:7px;background:var(--yellow)}
+.ficha-h{font-family:var(--f-display);font-size:1.4rem;text-transform:uppercase;font-weight:800}
+.ficha-acts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ficha-acts .full{grid-column:1/-1}
+.ficha-note{font-size:.78rem;color:var(--steel)}
+@media (max-width:860px){
+  .overlay.sheet-wrap{padding:0;align-items:end}
+  .sheet{max-height:100%;height:100%}
+  .ficha-grid{grid-template-columns:1fr}
+  .ficha-stage{position:relative;height:auto;padding:56px 16px 16px}
+  .ficha-stage img{flex:none;height:250px}
+  .ficha-info{padding:22px 16px 40px}
+  .ficha-acts{grid-template-columns:1fr}
+}
+.cmp-wrap{padding:28px clamp(16px,3vw,40px) 32px}
+.cmp-scroll{overflow-x:auto;margin-top:18px}
+.cmp-table{border-collapse:collapse;min-width:100%;font-size:.92rem}
+.cmp-table th,.cmp-table td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;min-width:170px}
+.cmp-table thead th{vertical-align:bottom;background:var(--plate)}
+.cmp-table thead img{width:100%;max-width:220px;height:auto;display:block;margin-bottom:8px}
+.cmp-table thead b{font-family:var(--f-display);font-size:1.5rem;text-transform:uppercase}
+.cmp-table tbody th{color:var(--steel);font-weight:500;position:sticky;left:0;background:var(--paper);min-width:150px}
+@media (max-width:640px){.cmp-table th,.cmp-table td{min-width:128px;padding:9px 8px;font-size:.84rem}.cmp-table tbody th{min-width:104px}.cmp-table thead img{max-width:120px}.cmp-table thead b{font-size:1.1rem}}
+.cmp-table td{font-weight:700}
 /* catálogo PDF */
 .cat-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:1px solid rgba(255,255,255,.22);border-radius:var(--r);background:transparent;color:var(--on-dark);font:inherit;font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
 .cat-btn:hover{border-color:var(--yellow);color:var(--yellow)}
@@ -665,6 +727,8 @@ footer button{background:none;border:0;padding:0;color:var(--on-dark);font:inher
     </div>
   </div>
 </div>
+<div class="overlay sheet-wrap" id="fichaWrap" hidden role="dialog" aria-modal="true" aria-labelledby="fichaTitle"><div class="sheet" id="fichaSheet"></div></div>
+<div class="cmp-bar" id="cmpBar" hidden><b id="cmpTxt"></b><button class="btn btn-y btn-sm" type="button" id="cmpGo">Comparar</button><button class="x" type="button" id="cmpClr">Limpar</button></div>
 <div class="toast" id="toast" hidden role="status" aria-live="polite"></div>
 
 <script>
@@ -835,8 +899,9 @@ function renderConfig(){
 function renderCats(){
   $("#cats").innerHTML = CATEGORIAS.map(c=>`
     <article class="cat">
-      <div class="cat-fig"><span class="cat-code">${c.cod}</span><span class="cat-count">${EQUIPAMENTOS.filter(e=>e.categoria===c.id).length} modelo(s)</span><img src="${c.foto}" alt="${c.nome} XCMG" loading="lazy" decoding="async"></div>
+      <div class="cat-fig"><img src="${c.foto}" alt="${c.nome} XCMG" loading="lazy" decoding="async"></div>
       <div class="cat-body">
+        <span class="cat-n">${EQUIPAMENTOS.filter(e=>e.categoria===c.id).length} ${EQUIPAMENTOS.filter(e=>e.categoria===c.id).length>1?"modelos":"modelo"}</span>
         <h3>${c.nome}</h3>
         <p>${c.desc}</p>
         <div class="apps" aria-label="Principais aplicações">${c.apps.map(a=>`<span>${a}</span>`).join("")}</div>
@@ -869,6 +934,80 @@ function kpisOf(e){
 }
 let showAll=false;
 const isPhone=()=>{ try{ return matchMedia("(max-width:760px)").matches; }catch(e){ return false; } };
+/* ===== ficha técnica + comparador ===== */
+const CMP=new Set();
+const byId=id=>EQUIPAMENTOS.find(e=>e.id===id);
+const nomeEq=e=>`XCMG ${e.modelo}`;
+const pageUrl=()=>location.href.split("#")[0];
+let fichaList=[];
+function fichaTexto(e){
+  const cat=catById(e.categoria);
+  return [`*${nomeEq(e)}*${e.tipo?` · ${e.tipo}`:` · ${cat?.nome||""}`}`, ...(e.specs||[]).map(s=>`• ${s[0]}: ${s[1]}`), ...(e.extra||[]).map(x=>`• ${x}`), e.br?"• Fabricado no Brasil":"", "", `${nomeEmpresa()} · Revenda Autorizada XCMG · Manaus/AM`, `${pageUrl()}#${e.id}`].filter((l,i)=>l!==""||i>0).join("\n");
+}
+function openFicha(id, origem){
+  const e=byId(id); if(!e) return;
+  const cat=catById(e.categoria), K=kpisOf(e), nome=nomeEq(e);
+  const idx=fichaList.indexOf(id), prev=fichaList[idx-1], next=fichaList[idx+1];
+  const zap=waLink(`Olá, ${nomeEmpresa()}! Vim pelo site e quero uma proposta para o ${nome}.`);
+  const share=`https://wa.me/?text=${encodeURIComponent(fichaTexto(e))}`;
+  $("#fichaSheet").innerHTML=`<div class="sheet-bar"><button class="sheet-close" type="button" data-close-ficha aria-label="Fechar">×</button></div>
+  <div class="ficha-grid">
+    <div class="ficha-stage">
+      ${e.foto?`<img src="${esc(e.foto)}" alt="${esc(nome)}">`:machine(cat?.art)}
+      ${fichaList.length>1?`<div class="ficha-nav"><button type="button" ${prev?`data-ficha="${prev}"`:"disabled"}>‹ Anterior</button><button type="button" ${next?`data-ficha="${next}"`:"disabled"}>Próximo ›</button></div>`:""}
+    </div>
+    <div class="ficha-info">
+      <div class="eq-tags"><span class="tag">${esc(cat?.nome||"")}</span>${e.br?`<span class="tag br">Fabricado no Brasil</span>`:""}</div>
+      <div>${e.tipo?`<span class="eq-cat">${esc(e.tipo)}</span>`:""}<h2 id="fichaTitle">${esc(nome)}</h2></div>
+      ${K.kpis.length?`<div class="kpis">${K.kpis.map(k=>`<div><b>${esc(k[1])}</b><span>${esc(k[0])}</span></div>`).join("")}</div>`:""}
+      <table class="spec-table"><caption>Ficha técnica</caption><tbody>
+        ${(e.specs||[]).map(s=>`<tr><th scope="row">${esc(s[0])}</th><td>${esc(s[1])}</td></tr>`).join("")}
+        <tr><th scope="row">Linha</th><td>${esc(cat?.nome||"")}</td></tr>
+        <tr><th scope="row">Origem</th><td>${e.br?"Fabricado no Brasil (Pouso Alegre/MG)":"Importado"}</td></tr>
+        <tr><th scope="row">Condições comerciais</th><td>${typeof e.preco==="number"?e.preco.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0}):"Sob consulta"}</td></tr>
+      </tbody></table>
+      ${(e.extra||[]).length?`<div><p class="ficha-h">Componentes e configuração</p><ul class="comp-list" style="margin-top:10px">${e.extra.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:""}
+      ${cat?.apps?.length?`<div><p class="ficha-h">Aplicações</p><div class="apps" style="margin-top:10px">${cat.apps.map(a=>`<span>${esc(a)}</span>`).join("")}</div></div>`:""}
+      <div class="ficha-acts">
+        <a class="btn btn-y" href="#orcamento" data-orc="${e.categoria}" data-modelo="${esc(nome)}" data-origem="ficha_${esc(e.id)}" data-close-ficha>Pedir proposta</a>
+        <a class="btn btn-wa" href="${zap||"#contato"}" target="_blank" rel="noopener" data-track="ficha_whatsapp_${esc(e.id)}">WhatsApp</a>
+        <a class="btn btn-line full" href="${share}" target="_blank" rel="noopener" data-track="ficha_compartilhar_${esc(e.id)}">Enviar esta ficha pelo WhatsApp</a>
+        <label class="cmp-toggle full"><input type="checkbox" data-cmp="${esc(e.id)}" ${CMP.has(e.id)?"checked":""}> Adicionar ao comparador</label>
+      </div>
+      <p class="ficha-note">Dados técnicos conforme o catálogo Linha de Produtos XCMG. Especificações podem mudar sem aviso prévio pela política de melhoria contínua do fabricante. Confirme a configuração na proposta.</p>
+    </div>
+  </div>`;
+  $("#fichaWrap").hidden=false; $("#fichaSheet").scrollTop=0; $(".sheet-close").focus();
+  track("ficha_abrir",{modelo:e.id,origem:origem||""});
+}
+function closeFicha(){ $("#fichaWrap").hidden=true; }
+function updateCmpBar(){
+  const n=CMP.size; $("#cmpBar").hidden=n===0;
+  $("#cmpTxt").textContent=n===1?"1 modelo selecionado · escolha mais um":`${n} modelos selecionados`;
+  $("#cmpGo").textContent=n>1?`Comparar ${n}`:"Comparar";
+  $("#cmpGo").disabled=n<2;
+  document.querySelectorAll("[data-cmp]").forEach(c=>c.checked=CMP.has(c.dataset.cmp));
+}
+function toggleCmp(id,on){
+  if(on){ if(CMP.size>=3){ toast("Compare até 3 modelos por vez."); updateCmpBar(); return; } CMP.add(id); }
+  else CMP.delete(id);
+  track("comparar_toggle",{modelo:id,ativo:on}); updateCmpBar();
+}
+function openCompare(){
+  const items=[...CMP].map(byId).filter(Boolean); if(items.length<2) return;
+  const labels=[]; KPI_ORDER.forEach(([k])=>{ if(items.some(e=>(e.specs||[]).some(s=>s[0]===k))) labels.push(k); });
+  items.forEach(e=>(e.specs||[]).forEach(s=>{ if(!labels.includes(s[0])) labels.push(s[0]); }));
+  const val=(e,k)=>((e.specs||[]).find(s=>s[0]===k)||[])[1]||"—";
+  $("#fichaSheet").innerHTML=`<div class="sheet-bar"><button class="sheet-close" type="button" data-close-ficha aria-label="Fechar">×</button></div>
+  <div class="cmp-wrap"><p class="eyebrow">Comparador</p><h2 id="fichaTitle" style="margin-top:10px">Lado a lado</h2>
+  <div class="cmp-scroll"><table class="cmp-table"><thead><tr><th></th>${items.map(e=>`<th><img src="${esc(e.foto)}" alt=""><b>${esc(nomeEq(e))}</b><br><span class="eq-cat">${esc(e.tipo||catById(e.categoria)?.nome||"")}</span></th>`).join("")}</tr></thead>
+  <tbody>${labels.map(k=>`<tr><th scope="row">${esc(k)}</th>${items.map(e=>`<td>${esc(val(e,k))}</td>`).join("")}</tr>`).join("")}
+  <tr><th scope="row">Origem</th>${items.map(e=>`<td>${e.br?"Fabricado no Brasil":"Importado"}</td>`).join("")}</tr>
+  <tr><th scope="row"></th>${items.map(e=>`<td><button class="btn btn-dark btn-sm" type="button" data-ficha="${e.id}">Ficha completa</button></td>`).join("")}</tr></tbody></table></div>
+  <div class="ficha-acts" style="margin-top:20px;max-width:640px"><a class="btn btn-wa" href="${waLink(`Olá, ${nomeEmpresa()}! Estou comparando ${items.map(nomeEq).join(", ")} e quero uma proposta.`)||"#contato"}" target="_blank" rel="noopener" data-track="comparar_whatsapp">Proposta dos ${items.length} no WhatsApp</a></div>
+  </div>`;
+  $("#fichaWrap").hidden=false; $("#fichaSheet").scrollTop=0; track("comparar_abrir",{modelos:[...CMP].join(",")});
+}
 function renderEq(){
   const q = ($("#q").value||"").trim().toLowerCase();
   const list = EQUIPAMENTOS.filter(e=>(filtroCat==="todos"||e.categoria===filtroCat)
@@ -877,6 +1016,7 @@ function renderEq(){
   const host = $("#eqList");
   $("#eqCount").textContent = `${list.length} de ${EQUIPAMENTOS.length} modelos`;
   const LIM=6, cut = isPhone() && !showAll && filtroCat==="todos" && !q && list.length>LIM;
+  fichaList=list.map(e=>e.id);
   const total=list.length; if(cut) list.splice(LIM);
   if(!list.length){
     const cat = catById(filtroCat);
@@ -889,24 +1029,20 @@ function renderEq(){
       const cat=catById(e.categoria); const nome=`XCMG ${e.modelo}`;
       const price = (typeof e.preco==="number") ? `<p class="price">${e.preco.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0})}</p>` : `<p class="price consult">Consulte condições comerciais</p>`;
       const specs = [["Ano",e.ano],...(e.specs||[])].filter(s=>s[1]!==undefined&&s[1]!==null&&s[1]!=="");
-      const extra = e.extra||[];
-      const K=kpisOf(e); const extraAll=[...K.rest.map(x=>`${x[0]}: ${x[1]}`),...extra];
-      return `<article class="eq">
-        <div class="eq-fig"><span class="eq-tag">${esc((cat?.nome||"").replace(/s$/,"").replace("Escavadeiras hidráulica","Escavadeira").replace("Linha de pavimentação","Pavimentação"))}</span>${e.foto?`<img src="${esc(e.foto)}" alt="${esc(nome)}" loading="lazy" decoding="async">`:machine(cat?.art)}
-          ${e.br?`<span class="badge br">Fabricado no Brasil</span>`:""}
-          ${e.condicao?`<span class="badge ${e.condicao==="seminovo"?"used":""}" style="top:auto;bottom:16px">${e.condicao==="seminovo"?"Seminovo":"Novo"}</span>`:""}
-          ${e.disponibilidade?`<span class="avail ${/pronta/i.test(e.disponibilidade)?"ok":""}" style="top:auto;bottom:16px"><i></i>${esc(e.disponibilidade)}</span>`:""}</div>
+      const K=kpisOf(e); const catNome=(cat?.nome||"").replace("Escavadeiras hidráulicas","Escavadeira").replace("Linha de pavimentação","Pavimentação").replace(/s$/,"");
+      return `<article class="eq" id="card-${esc(e.id)}">
+        <button class="eq-fig" type="button" data-ficha="${esc(e.id)}" aria-label="Abrir ficha técnica do ${esc(nome)}">${e.foto?`<img src="${esc(e.foto)}" alt="${esc(nome)}" loading="lazy" decoding="async">`:machine(cat?.art)}<span class="zoom" aria-hidden="true">Ficha técnica +</span></button>
         <div class="eq-body">
+          <div class="eq-tags"><span class="tag">${esc(catNome)}</span>${e.br?`<span class="tag br">Fabricado no Brasil</span>`:""}${e.condicao?`<span class="tag">${e.condicao==="seminovo"?"Seminovo":"Novo"}</span>`:""}${e.disponibilidade?`<span class="tag ok">${esc(e.disponibilidade)}</span>`:""}</div>
           ${e.tipo?`<span class="eq-cat">${esc(e.tipo)}</span>`:""}
           <h3>${esc(nome)}</h3>
           ${K.kpis.length?`<div class="kpis">${K.kpis.map(k=>`<div><b>${esc(k[1])}</b><span>${esc(k[0])}</span></div>`).join("")}</div>`:""}
           ${K.motor?`<p class="eq-motor">Motor ${esc(K.motor)}</p>`:""}
-          ${extraAll.length?`<details class="ficha"><summary>Ficha completa</summary><ul>${extraAll.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></details>`:""}
-          ${price}
           <div class="eq-actions">
-            <a class="btn btn-dark btn-sm" href="#orcamento" data-orc="${e.categoria}" data-modelo="${esc(nome)}" data-origem="catalogo_${esc(e.id||"")}">Pedir proposta</a>
+            <button class="btn btn-dark btn-sm" type="button" data-ficha="${esc(e.id)}">Ficha técnica</button>
             <a class="btn btn-wa btn-sm" data-wa-dyn="catalogo" data-extra="${esc(nome)}" href="#">WhatsApp</a>
           </div>
+          <label class="cmp-toggle"><input type="checkbox" data-cmp="${esc(e.id)}" ${CMP.has(e.id)?"checked":""}> Comparar</label>
         </div></article>`;}).join("")}</div>${cut?`<div class="more-wrap"><button class="btn btn-dark" type="button" id="moreEq">Ver todos os ${total} modelos</button></div>`:""}`;
     const mb=$("#moreEq"); if(mb) mb.addEventListener("click",()=>{ showAll=true; track("catalogo_ver_todos"); renderEq(); });
   }
@@ -1063,6 +1199,8 @@ function init(){
     if(t.dataset.chip){ filtroCat=t.dataset.chip; renderChips(); renderEq(); track("catalogo_filtro",{categoria:filtroCat}); }
     if(t.hasAttribute("data-open-privacy")) openPrivacy();
     if(t.dataset.openCatalog) openCatalog(t.dataset.openCatalog);
+    if(t.dataset.ficha){ e.preventDefault(); openFicha(t.dataset.ficha,"card"); }
+    if(t.hasAttribute("data-close-ficha")) closeFicha();
     if(t.hasAttribute("data-close-catalog")) $("#catalogo").hidden=true;
     if(t.dataset.copy!==undefined){ const v=t.dataset.copy; try{ navigator.clipboard.writeText(v).then(()=>toast("Copiado: "+v),()=>toast(v)); }catch(_){ toast(v); } }
     if(t.closest("#nav") && t.tagName==="A"){ $("#nav").classList.remove("open"); $("#burger").setAttribute("aria-expanded","false"); }
@@ -1077,6 +1215,12 @@ function init(){
   document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ $("#privacy").hidden=true; $("#catalogo").hidden=true; } });
   $("#catalogo").addEventListener("click",e=>{ if(e.target.id==="catalogo") $("#catalogo").hidden=true; });
   setupPdfLinks(); setTimeout(prefetchPdf,2500);
+  document.addEventListener("change",ev=>{ const c=ev.target.closest("[data-cmp]"); if(c) toggleCmp(c.dataset.cmp,c.checked); });
+  $("#cmpGo").addEventListener("click",openCompare);
+  $("#cmpClr").addEventListener("click",()=>{ CMP.clear(); updateCmpBar(); });
+  $("#fichaWrap").addEventListener("click",ev=>{ if(ev.target.id==="fichaWrap") closeFicha(); });
+  document.addEventListener("keydown",ev=>{ if(ev.key==="Escape") closeFicha(); });
+  try{ const h=(location.hash||"").slice(1); if(h && byId(h)) setTimeout(()=>openFicha(h,"link"),300); }catch(_){}
   seo(); loadAnalytics();
 }
 init();

@@ -71,6 +71,13 @@ Antispam: campo isca oculto + bloqueio de envio em menos de 3 segundos. Se houve
 
 Conversão recomendada no Google Ads/Meta: `lead_form_success` e `lead_whatsapp_handoff`.
 
+## Ficha técnica e comparador
+
+- Clique na foto ou em **Ficha técnica**: abre a ficha completa do modelo (todas as especificações do catálogo, componentes, aplicações), com navegação Anterior/Próximo.
+- **Enviar esta ficha pelo WhatsApp**: manda a ficha em texto com o link direto do modelo (ex.: `seusite/#xe225br` abre a ficha automaticamente).
+- **Comparar**: marque até 3 modelos e toque em **Comparar** na barra inferior para ver lado a lado.
+Eventos: `ficha_abrir`, `comparar_toggle`, `comparar_abrir`, `cta_click` (ficha_whatsapp_*, ficha_compartilhar_*, comparar_whatsapp).
+
 ## 5. Catálogo em PDF
 
 Arquivo: `catalogo-xcmg-nacional.pdf` (na raiz do site). Para atualizar, substitua o arquivo mantendo o mesmo nome.

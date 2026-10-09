@@ -82,10 +82,11 @@ Eventos: `ficha_abrir`, `comparar_toggle`, `comparar_abrir`, `cta_click` (ficha_
 
 Arquivo: `catalogo-xcmg-nacional.pdf` (na raiz do site). Para atualizar, substitua o arquivo mantendo o mesmo nome.
 Botões: ícone no cabeçalho, faixa na seção de modelos e item no menu do celular.
-- **Abrir**: abre o PDF em nova aba (livre).
-- **Baixar**: pede nome + WhatsApp + consentimento LGPD; o download começa na hora. O lead vai para o webhook (`tipo: "download_catalogo"`) quando `integracao.webhookUrl` estiver configurado. Quem já informou os dados no mesmo navegador baixa direto.
+- Na primeira vez, o catálogo pede **nome + WhatsApp + consentimento LGPD**. Depois disso libera **Abrir**, **Baixar** e **Enviar pelo WhatsApp**. Quem já informou os dados no mesmo navegador entra direto.
+- O lead vai para o webhook (`tipo: "catalogo"`) quando `integracao.webhookUrl` estiver configurado.
+- O PDF continua com endereço público: quem tiver o link direto abre sem cadastro. O formulário filtra o visitante comum do site, não é uma trava de segurança.
 - **Enviar pelo WhatsApp**: no celular (HTTPS), abre o compartilhamento do sistema com o próprio PDF anexado; no computador, abre o WhatsApp com o link do catálogo.
-Eventos: `catalogo_modal`, `catalogo_abrir`, `catalogo_gate_abrir`, `catalogo_baixar`, `lead_catalogo`, `catalogo_whatsapp`, `catalogo_compartilhado_arquivo`.
+Eventos: `catalogo_modal`, `catalogo_abrir`, `catalogo_gate_abrir`, `lead_catalogo`, `catalogo_abrir`, `catalogo_baixar`, `catalogo_whatsapp`, `catalogo_compartilhado_arquivo`.
 
 ## 6. Fotos
 

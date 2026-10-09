@@ -562,9 +562,7 @@ main>.sec:not(.about):not(.quote){background-color:transparent}
       <img src="img/catalogo-capa.jpg" alt="" width="54" height="76" loading="lazy">
       <div class="t"><b>Catálogo completo XCMG</b><span>PDF · 6 páginas · 1,5 MB</span></div>
       <div class="pdf-actions">
-        <a class="btn btn-y btn-sm" data-pdf="abrir" data-src="secao_catalogo" href="catalogo-xcmg-nacional.pdf" target="_blank" rel="noopener">Abrir</a>
-        <button class="btn btn-ghost-d btn-sm" type="button" data-gate="secao_catalogo">Baixar</button>
-        <a class="btn btn-wa btn-sm" data-pdf="whatsapp" data-src="secao_catalogo" href="#" target="_blank" rel="noopener">Enviar pelo WhatsApp</a>
+        <button class="btn btn-y" type="button" data-open-catalog="secao_catalogo">Receber o catálogo</button>
       </div>
     </div>
     <div class="toolbar">
@@ -746,13 +744,13 @@ main>.sec:not(.about):not(.quote){background-color:transparent}
       <p class="lead" style="font-size:1rem;margin-top:10px">Escavadeiras, pás carregadeiras, motoniveladora, rolos, retroescavadeiras, linha de pavimentação e empilhadeiras elétricas, com as fichas técnicas de cada modelo.</p>
       <div class="acts">
         <a class="btn btn-dark" data-pdf="abrir" data-src="modal" href="catalogo-xcmg-nacional.pdf" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 13h6M9 17h6"/></svg> Abrir catálogo</a>
-        <button class="btn btn-line" type="button" data-gate="modal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg> Baixar PDF</button>
+        <a class="btn btn-line" data-pdf="baixar" data-src="modal" href="catalogo-xcmg-nacional.pdf" download="Catalogo-XCMG-Nacional.pdf"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg> Baixar PDF</a>
         <a class="btn btn-wa" data-pdf="whatsapp" data-src="modal" href="#" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg> Enviar pelo WhatsApp</a>
         <a class="btn btn-y" data-wa="catalogo_consultor" href="#">Falar com um consultor sobre um modelo</a>
       </div>
       <form class="gate" id="gateForm" hidden novalidate>
-        <p class="ficha-h">Baixar o catálogo</p>
-        <p class="fine" style="margin-top:4px">Informe seu nome e WhatsApp. O download começa na hora e um consultor fica disponível para tirar dúvidas.</p>
+        <p class="ficha-h">Acesse o catálogo completo</p>
+        <p class="fine" style="margin-top:4px">Informe seu nome e WhatsApp para abrir, baixar ou enviar o catálogo. Um consultor fica à disposição para tirar dúvidas.</p>
         <div class="gate-row">
           <div class="f"><label for="g-nome">Nome <span class="req">*</span></label><input id="g-nome" autocomplete="name" maxlength="120" required><span class="msg"></span></div>
           <div class="f"><label for="g-tel">WhatsApp <span class="req">*</span></label><input id="g-tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="(92) 00000-0000" required><span class="msg"></span></div>
@@ -760,7 +758,7 @@ main>.sec:not(.about):not(.quote){background-color:transparent}
         <div class="hp" aria-hidden="true"><input id="g-site" tabindex="-1" autocomplete="off"></div>
         <label class="consent" for="g-lgpd" style="margin-top:12px"><input id="g-lgpd" type="checkbox" required><span>Autorizo o contato da equipe comercial, conforme a <button type="button" data-open-privacy>Política de Privacidade</button>.</span></label>
         <p class="msg" id="gLgpdMsg" style="color:var(--err);font-size:.8rem" hidden>Marque a autorização para continuar.</p>
-        <div class="gate-acts"><button class="btn btn-y" type="submit" id="gateBtn">Baixar agora</button><button class="btn btn-line btn-sm" type="button" id="gateCancel">Voltar</button></div>
+        <div class="gate-acts"><button class="btn btn-y" type="submit" id="gateBtn">Liberar catálogo</button></div>
       </form>
       <div class="gate-ok" id="gateOk" hidden></div>
       <p class="fine" id="catFine">No celular, "Enviar pelo WhatsApp" anexa o próprio PDF. No computador, envia o link do catálogo.</p>
@@ -1220,29 +1218,23 @@ function setupPdfLinks(){
     }
   });
 }
-function openCatalog(origem){ resetGate(); $("#catalogo").hidden=false; $("[data-close-catalog]").focus(); prefetchPdf(); track("catalogo_modal",{origem}); }
-/* ===== download do catálogo com captura de lead ===== */
+/* ===== catálogo liberado após nome + WhatsApp ===== */
 let gateOrigem="", gateT0=0;
 const LS_KEY="nacional_catalogo_lead";
-function resetGate(){ $("#gateForm").hidden=true; $("#gateOk").hidden=true; $(".cat-modal .acts").hidden=false; $("#catFine").hidden=false; }
-function startDownload(){
-  const a=document.createElement("a"); a.href=PDF.arquivo; a.download=PDF.nome; a.rel="noopener"; document.body.appendChild(a); a.click(); a.remove();
+function savedLead(){ try{ const v=JSON.parse(localStorage.getItem(LS_KEY)||"null"); return v&&v.nome&&v.telefone?v:null; }catch(_){ return null; } }
+function showCatalogActions(lead,novo){
+  $("#gateForm").hidden=true; $(".cat-modal .acts").hidden=false; $("#catFine").hidden=false;
+  if(lead){ $("#gateOk").innerHTML=`<b>${novo?"Catálogo liberado":"Bem-vindo de volta"}</b><p style="margin:0">${novo?"Obrigado":"Olá"}, ${esc(lead.nome.split(" ")[0])}. Escolha como quer acessar.</p>`; $("#gateOk").hidden=false; }
 }
-function openGate(origem){
+function openCatalog(origem){
   gateOrigem=origem; gateT0=Date.now();
-  let saved=null; try{ saved=JSON.parse(localStorage.getItem(LS_KEY)||"null"); }catch(_){}
-  $("#catalogo").hidden=false; prefetchPdf();
-  if(saved && saved.nome && saved.telefone){ startDownload(); showGateOk(saved,true); track("catalogo_baixar",{origem,lead:"recorrente"}); return; }
+  $("#catalogo").hidden=false; prefetchPdf(); track("catalogo_modal",{origem});
+  const lead=savedLead();
+  if(lead){ showCatalogActions(lead,false); $("[data-close-catalog]").focus(); return; }
   $(".cat-modal .acts").hidden=true; $("#catFine").hidden=true; $("#gateOk").hidden=true; $("#gateForm").hidden=false;
   setTimeout(()=>$("#g-nome").focus(),50); track("catalogo_gate_abrir",{origem});
 }
 function gateErr(id,msg){ const f=$(id).closest(".f"); if(msg){f.setAttribute("data-invalid","");f.querySelector(".msg").textContent=msg;}else{f.removeAttribute("data-invalid");f.querySelector(".msg").textContent="";} }
-function showGateOk(lead,recorrente){
-  $(".cat-modal .acts").hidden=true; $("#gateForm").hidden=true; $("#catFine").hidden=true;
-  const wa=waLink(`Olá, ${nomeEmpresa()}! Sou ${lead.nome}, acabei de baixar o catálogo XCMG pelo site e gostaria de falar com um consultor.`);
-  $("#gateOk").innerHTML=`<b>Download iniciado</b><p style="margin:0">${recorrente?`Bem-vindo de volta, ${esc(lead.nome.split(" ")[0])}.`:`Obrigado, ${esc(lead.nome.split(" ")[0])}.`} Se o arquivo não baixar, <a href="${PDF.arquivo}" target="_blank" rel="noopener">abra o catálogo aqui</a>.</p>${wa?`<a class="btn btn-wa btn-sm" href="${wa}" target="_blank" rel="noopener" data-track="catalogo_pos_download_whatsapp" style="justify-self:start">Falar com um consultor agora</a>`:""}`;
-  $("#gateOk").hidden=false;
-}
 async function submitGate(ev){
   ev.preventDefault();
   if($("#g-site").value || Date.now()-gateT0<1500) return;
@@ -1251,13 +1243,13 @@ async function submitGate(ev){
   if(tel.length<10||tel.length>11){gateErr("#g-tel","Informe DDD e número.");ok=false;} else gateErr("#g-tel");
   const lg=$("#g-lgpd").checked; $("#gLgpdMsg").hidden=lg; if(!lg) ok=false;
   if(!ok) return;
-  const lead={tipo:"download_catalogo", nome, telefone:$("#g-tel").value.trim(), consentimento:true, consentimento_em:new Date().toISOString(), origem:{...ORIGEM, cta:"catalogo_"+gateOrigem}, enviado_em:new Date().toISOString()};
-  startDownload();
+  const lead={tipo:"catalogo", nome, telefone:$("#g-tel").value.trim(), consentimento:true, consentimento_em:new Date().toISOString(), origem:{...ORIGEM, cta:"catalogo_"+gateOrigem}, enviado_em:new Date().toISOString()};
   try{ localStorage.setItem(LS_KEY, JSON.stringify({nome:lead.nome, telefone:lead.telefone})); }catch(_){}
-  track("catalogo_baixar",{origem:gateOrigem,lead:"novo"}); track("lead_catalogo",{origem:gateOrigem});
+  track("lead_catalogo",{origem:gateOrigem});
   if(CONFIG.integracao.webhookUrl){ try{ await fetch(CONFIG.integracao.webhookUrl,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(lead),keepalive:true}); }catch(_){ track("lead_catalogo_erro"); } }
-  showGateOk(lead,false);
+  showCatalogActions(lead,true);
 }
+
 
 /* ---------- eventos ---------- */
 function openPrivacy(){ $("#privacy").hidden=false; $("#privClose").focus(); track("privacy_open"); }
@@ -1276,7 +1268,6 @@ function init(){
     if(t.dataset.chip){ filtroCat=t.dataset.chip; renderChips(); renderEq(); track("catalogo_filtro",{categoria:filtroCat}); }
     if(t.hasAttribute("data-open-privacy")) openPrivacy();
     if(t.dataset.openCatalog) openCatalog(t.dataset.openCatalog);
-    if(t.dataset.gate){ e.preventDefault(); openGate(t.dataset.gate); }
     if(t.dataset.ficha){ e.preventDefault(); openFicha(t.dataset.ficha,"card"); }
     if(t.hasAttribute("data-close-ficha")) closeFicha();
     if(t.hasAttribute("data-close-catalog")) $("#catalogo").hidden=true;
@@ -1294,7 +1285,7 @@ function init(){
   $("#catalogo").addEventListener("click",e=>{ if(e.target.id==="catalogo") $("#catalogo").hidden=true; });
   setupPdfLinks(); setTimeout(prefetchPdf,2500);
   $("#gateForm").addEventListener("submit",submitGate);
-  $("#gateCancel").addEventListener("click",resetGate);
+  $(".cat-modal .acts").before($("#gateOk")); $("#gateOk").style.margin="16px 0";
   $("#g-tel").addEventListener("input",ev=>{ ev.target.value=maskTel(ev.target.value); });
   document.addEventListener("change",ev=>{ const c=ev.target.closest("[data-cmp]"); if(c) toggleCmp(c.dataset.cmp,c.checked); });
   $("#cmpGo").addEventListener("click",openCompare);

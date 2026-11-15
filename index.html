@@ -574,6 +574,19 @@ footer .ft-bottom{flex-direction:column;justify-content:center;align-items:cente
 .about-fig img{aspect-ratio:1600/1040;object-fit:cover;border-bottom:4px solid var(--yellow)}
 .cta-band .art img,.about-fig img{height:auto}
 .hdr .wa-ico-btn{border-radius:var(--r)}
+
+/* filtros de categoria: contador + grade no celular */
+@media (max-width:380px){.chips .chip{font-size:.76rem;padding:8px 6px 8px 10px;gap:4px}.chips .chip-n{min-width:20px;padding:0 4px}}
+.chip{display:inline-flex;align-items:center;gap:8px}
+.chip-n{font-family:var(--f-mono);font-size:.7rem;min-width:22px;height:20px;padding:0 6px;border-radius:999px;background:var(--plate);color:var(--steel);display:inline-grid;place-items:center}
+.chip[aria-pressed="true"] .chip-n{background:var(--yellow);color:var(--ink)}
+.chip[aria-pressed="true"] .chip-t{color:#fff}
+@media (max-width:640px){
+  .chips{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;overflow:visible!important;margin-inline:0!important;padding:0!important;flex:1 1 100%}
+  .chip{width:100%;min-height:46px;border-radius:10px;justify-content:space-between;padding:8px 8px 8px 12px;font-size:.84rem;letter-spacing:-.005em;text-align:left;line-height:1.15;background:#fff;box-shadow:0 1px 0 var(--line)}
+  .chip-t{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);box-shadow:inset 0 -3px 0 var(--yellow)}
+}
 </style>
 </head>
 <body>
@@ -1068,7 +1081,8 @@ function renderCats(){
 let filtroCat = "todos";
 function renderChips(){
   const opts = [{id:"todos",nome:"Todos"},...CATEGORIAS];
-  $("#chips").innerHTML = opts.map(c=>`<button type="button" class="chip" data-chip="${c.id}" aria-pressed="${c.id===filtroCat}">${c.id==="todos"?"Todos":c.nome}</button>`).join("");
+  const curto={escavadeiras:"Escavadeiras",pas:"Pás carregadeiras",motoniveladoras:"Motoniveladora",rolos:"Rolos",retros:"Retroescavadeiras",pavimentacao:"Pavimentação",empilhadeiras:"Empilhadeiras"};
+  $("#chips").innerHTML = opts.map(c=>{const n=c.id==="todos"?EQUIPAMENTOS.length:EQUIPAMENTOS.filter(e=>e.categoria===c.id).length;const nome=c.id==="todos"?"Todos":(curto[c.id]||c.nome);return `<button type="button" class="chip" data-chip="${c.id}" aria-pressed="${c.id===filtroCat}"><span class="chip-t">${nome}</span><span class="chip-n">${n}</span></button>`;}).join("");
 }
 const KPI_ORDER=[["Peso operacional","Peso operacional"],["Capacidade nominal","Capacidade"],["Potência","Potência"],["Caçamba","Caçamba"],["Lâmina","Lâmina"],["Largura de fresagem","Fresagem"],["Pavimentação","Pavimentação"],["Força centrífuga","Força centríf."],["Elevação máx.","Elevação"],["Prof. de escavação","Prof. escav."],["Esteira","Esteira"],["Pneus","Pneus"]];
 function kpisOf(e){

@@ -575,6 +575,9 @@ footer .ft-bottom{flex-direction:column;justify-content:center;align-items:cente
 .cta-band .art img,.about-fig img{height:auto}
 .hdr .wa-ico-btn{border-radius:var(--r)}
 
+/* celular: sem tarja do modelo no topo e sem rolagem lateral */
+@media (max-width:760px){.hero-tag{display:none!important}}
+html,body{overflow-x:clip}
 /* filtros de categoria: contador + grade no celular */
 @media (max-width:380px){.chips .chip{font-size:.76rem;padding:8px 6px 8px 10px;gap:4px}.chips .chip-n{min-width:20px;padding:0 4px}}
 .chip{display:inline-flex;align-items:center;gap:8px}

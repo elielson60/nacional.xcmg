@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="canonical" href="https://SEU-DOMINIO.com.br/">
-<style>html,body{margin:0}</style>
+<style>html,body{margin:0}
+</style>
 <title>Nacional XCMG Manaus</title>
 <meta name="description" content="Nacional, Revenda Autorizada XCMG em Manaus/AM. Escavadeiras, pás carregadeiras, motoniveladora, rolos compactadores, retroescavadeiras, linha de pavimentação e empilhadeiras elétricas. Solicite seu orçamento.">
 <meta name="keywords" content="XCMG Manaus, máquinas pesadas Manaus, escavadeira XCMG, XE225BR, pá carregadeira XCMG, LW300BR, motoniveladora GR1803BR, retroescavadeira XC870BR, rolo compactador XS123BR, empilhadeira elétrica XCMG, Amazonas">
@@ -559,6 +560,20 @@ footer .ft-bottom{flex-direction:column;justify-content:center;align-items:cente
 .modal p,.modal li{color:var(--steel);font-size:.95rem;margin-top:8px}
 .modal .close{float:right}
 .toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:90;background:var(--ink);color:var(--on-dark);padding:12px 18px;border-left:4px solid var(--yellow);font-size:.9rem;max-width:calc(100vw - 32px)}
+
+/* cabeçalho: botões padronizados e alinhados à direita */
+.hdr-cta{margin-left:auto;gap:8px}
+.wa-ico-btn,.cat-btn,.burger{box-sizing:border-box;height:44px;min-width:44px;border:1px solid rgba(255,255,255,.22);border-radius:var(--r);background:rgba(255,255,255,.04);color:var(--on-dark);align-items:center;justify-content:center;transition:border-color .18s,color .18s,background .18s}
+.wa-ico-btn,.cat-btn{display:inline-flex}
+.burger{display:none}
+.wa-ico-btn{width:44px;color:#25D366}
+.wa-ico-btn:hover,.cat-btn:hover,.burger:hover{border-color:var(--yellow);background:rgba(255,255,255,.08)}
+.wa-ico-btn .ico,.cat-btn .ico,.burger .ico{width:20px;height:20px}
+@media (max-width:1060px){.nav{margin-left:0}.burger{margin-left:0;display:inline-flex}.hdr .wrap{gap:12px}}
+@media (max-width:380px){.logo-nac img{height:26px}.hdr-cta{gap:6px}.wa-ico-btn,.cat-btn,.burger{min-width:42px;width:42px;height:42px}}
+.about-fig img{aspect-ratio:1600/1040;object-fit:cover;border-bottom:4px solid var(--yellow)}
+.cta-band .art img,.about-fig img{height:auto}
+.hdr .wa-ico-btn{border-radius:var(--r)}
 </style>
 </head>
 <body>
@@ -692,7 +707,7 @@ footer .ft-bottom{flex-direction:column;justify-content:center;align-items:cente
         <a class="btn btn-ghost-d" href="#orcamento" data-origem="chamada">Solicitar orçamento</a>
       </div>
     </div>
-    <div class="art"><img src="img/xcmg-banner.jpg" alt="Escavadeira e pá carregadeira XCMG em frente de obra" width="793" height="283" loading="lazy"></div>
+    <div class="art"><img src="img/xcmg-banner.jpg?v=20261115" alt="Escavadeira XCMG XE370D e pá carregadeira XCMG LW500BR-I" width="1600" height="1000" loading="lazy"></div>
   </div>
 </section>
 
@@ -744,7 +759,7 @@ footer .ft-bottom{flex-direction:column;justify-content:center;align-items:cente
       <h2 id="h-about">Nacional, Revenda Autorizada XCMG em Manaus.</h2>
       <div class="txt" id="aboutTxt"></div>
       <figure class="about-fig">
-        <img src="img/fabrica-pouso-alegre.jpg" alt="Fábrica XCMG Brasil Indústria em Pouso Alegre, Minas Gerais" width="273" height="201" loading="lazy">
+        <img src="img/fabrica-pouso-alegre.jpg?v=20261115" alt="Fábrica XCMG Brasil Indústria em Pouso Alegre, Minas Gerais" width="1600" height="1040" loading="lazy">
         <figcaption>Fábrica XCMG Brasil Indústria, em Pouso Alegre/MG</figcaption>
       </figure>
     </div>
@@ -901,7 +916,7 @@ const CONFIG = {
    Para incluir estoque: condicao:"novo"|"seminovo", disponibilidade:"Pronta entrega", preco:número */
 const EQUIPAMENTOS = [
   // Escavadeiras
-  {id:"xe15u", categoria:"escavadeiras", modelo:"XE15U", foto:"img/eq/xe15u.webp?v=20261115b", specs:[["Motor","Kubota D782"],["Potência","9,8 kW (13 hp)"],["Caçamba","0,04 m³"],["Esteira","230 mm"]], extra:["Etapa 5 da Europa","Válvula principal Hengli","Bomba principal Rexroth","Motores de deslocamento e giro Eaton"]},
+  {id:"xe15u", categoria:"escavadeiras", modelo:"XE15U", ilustrativa:true, foto:"img/eq/xe15u.webp?v=20261115c", specs:[["Motor","Kubota D782"],["Potência","9,8 kW (13 hp)"],["Caçamba","0,04 m³"],["Esteira","230 mm"]], extra:["Etapa 5 da Europa","Válvula principal Hengli","Bomba principal Rexroth","Motores de deslocamento e giro Eaton"]},
   {id:"xe17u", categoria:"escavadeiras", modelo:"XE17U", foto:"img/eq/xe17u.webp?v=20261115b", specs:[["Peso operacional","1.795 kg"],["Motor","Kubota D902"],["Potência","11,8 kW (15,8 hp)"],["Prof. de escavação","2,29 m"],["Caçamba","0,04 m³"]], extra:["Lança 1,83 m · Braço 0,95 m","Esteira de aço","Válvula principal Hengli","Bomba principal Casappa","Sem cabine"]},
   {id:"xe27u", categoria:"escavadeiras", modelo:"XE27U", foto:"img/eq/xe27u.webp?v=20261115b", specs:[["Peso operacional","2.680 kg"],["Motor","Kubota D1105"],["Potência","15,5 kW (20,78 hp)"],["Prof. de escavação","2,8 m"],["Caçamba","0,06 m³"]], extra:["Lança 2,09 m · Braço 1,3 m","Esteira de borracha","Válvula e bomba principal Hengli","Sem cabine"]},
   {id:"xe35u", categoria:"escavadeiras", modelo:"XE35U", foto:"img/eq/xe35u.webp?v=20261115b", specs:[["Motor","Yanmar 3TNV88F"],["Potência","21,4 kW (28,7 hp)"],["Caçamba","0,12 m³ (terraplanagem)"],["Esteira","300 mm"]], extra:["Etapa III da China","Válvula e bomba principal Hengli","Motores de deslocamento e giro Lectra"]},
@@ -1086,7 +1101,7 @@ function openFicha(id, origem){
       ${fichaList.length>1?`<div class="ficha-nav"><button type="button" ${prev?`data-ficha="${prev}"`:"disabled"}>‹ Anterior</button><button type="button" ${next?`data-ficha="${next}"`:"disabled"}>Próximo ›</button></div>`:""}
     </div>
     <div class="ficha-info">
-      <div class="eq-tags"><span class="tag">${esc(cat?.nome||"")}</span>${e.br?`<span class="tag br">Fabricado no Brasil</span>`:""}</div>
+      <div class="eq-tags"><span class="tag">${esc(cat?.nome||"")}</span>${e.br?`<span class="tag br">Fabricado no Brasil</span>`:""}${e.ilustrativa?`<span class="tag">Imagem ilustrativa</span>`:""}</div>
       <div>${e.tipo?`<span class="eq-cat">${esc(e.tipo)}</span>`:""}<h2 id="fichaTitle">${esc(nome)}</h2></div>
       ${K.kpis.length?`<div class="kpis">${K.kpis.map(k=>`<div><b>${esc(k[1])}</b><span>${esc(k[0])}</span></div>`).join("")}</div>`:""}
       <table class="spec-table"><caption>Ficha técnica</caption><tbody>
@@ -1162,7 +1177,7 @@ function renderEq(){
       return `<article class="eq" id="card-${esc(e.id)}">
         <button class="eq-fig" type="button" data-ficha="${esc(e.id)}" aria-label="Abrir ficha técnica do ${esc(nome)}">${e.foto?`<img src="${esc(e.foto)}" alt="${esc(nome)}" loading="lazy" decoding="async">`:machine(cat?.art)}<span class="zoom" aria-hidden="true">Ficha técnica +</span></button>
         <div class="eq-body">
-          <div class="eq-tags"><span class="tag">${esc(catNome)}</span>${e.br?`<span class="tag br">Fabricado no Brasil</span>`:""}${e.condicao?`<span class="tag">${e.condicao==="seminovo"?"Seminovo":"Novo"}</span>`:""}${e.disponibilidade?`<span class="tag ok">${esc(e.disponibilidade)}</span>`:""}</div>
+          <div class="eq-tags"><span class="tag">${esc(catNome)}</span>${e.br?`<span class="tag br">Fabricado no Brasil</span>`:""}${e.ilustrativa?`<span class="tag">Imagem ilustrativa</span>`:""}${e.condicao?`<span class="tag">${e.condicao==="seminovo"?"Seminovo":"Novo"}</span>`:""}${e.disponibilidade?`<span class="tag ok">${esc(e.disponibilidade)}</span>`:""}</div>
           ${e.tipo?`<span class="eq-cat">${esc(e.tipo)}</span>`:""}
           <h3>${esc(nome)}</h3>
           ${K.kpis.length?`<div class="kpis">${K.kpis.map(k=>`<div><b>${esc(k[1])}</b><span>${esc(k[0])}</span></div>`).join("")}</div>`:""}
